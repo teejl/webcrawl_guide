@@ -66,6 +66,7 @@ def scrape_amzn(search_word, page=1, df=pd.DataFrame(columns = ['Name', 'Price',
 	if len(df_old.index) == len(df.index):
 		if tries: # retry on error (sometimes connection ends recursion)
 			print('Something went wrong! Retrying ' + str(tries) + ' more times...')
+			time.sleep(8)
 			return(scrape_amzn(search_word,page,df, tries-1))
 		else:
 			return(df)
