@@ -1,8 +1,14 @@
+#!/bin/bash
+
+# enable execution: "sudo chmod u+x {this file path}"
+# execute file: "./{this file path}"
+
 echo '~~~ ><> ><> ><> ><> <>< <>< <>< <>< ~~~'
 echo '~~~ Initializing webscrape.init...'
 echo '~~~ ><> ><> ><> ><> <>< <>< <>< <>< ~~~'
 echo 
 echo 'Verifying Python3 is installed...'
+
 # install python3 (or confirm it is installed) 
 sudo apt-get update
 sudo apt-get install python3
