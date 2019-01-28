@@ -1,0 +1,23 @@
+echo '~~~ ><> ><> ><> ><> <>< <>< <>< <>< ~~~'
+echo '~~~ Initializing webscrape.init...'
+echo '~~~ ><> ><> ><> ><> <>< <>< <>< <>< ~~~'
+echo 
+echo 'Verifying Python3 is installed...'
+# install python3 (or confirm it is installed) 
+sudo apt-get update
+sudo apt-get install python3
+echo 'Python3 verification complete!'
+echo
+
+echo 'Verifying Python Packages are installed...'
+# install python packages
+sudo python3 -m pip install pandas
+sudo python3 -m pip install beautifulsoup4
+sudo python3 -m pip install html5lib
+echo 'Python Packages verification complete!'
+echo
+
+# prompt to user everyting is complete
+echo '~~~ ><> ><> ><> ><> <>< <>< <>< <>< ~~~~' 
+echo '~~~ webscrape.init has been initialized!' 
+echo '~~~ ><> ><> ><> ><> <>< <>< <>< <>< ~~~'
