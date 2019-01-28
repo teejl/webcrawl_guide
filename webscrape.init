@@ -19,5 +19,5 @@ echo
 
 # prompt to user everyting is complete
 echo '~~~ ><> ><> ><> ><> <>< <>< <>< <>< ~~~~' 
-echo '~~~ webscrape.init has been initialized!' 
+echo '~~~ webscrape.init has been completed!' 
 echo '~~~ ><> ><> ><> ><> <>< <>< <>< <>< ~~~'
