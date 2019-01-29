@@ -18,6 +18,7 @@ import re
 import pandas as pd
 import time
 import sys
+import datetime as dt
 
 # tested with below parameters
 search_word = "Data Science"
@@ -25,17 +26,18 @@ site = "https://www.amazon.com/s/ref=nb_sb_noss_2?url=search--alias%3Daps&field-
 site = 'https://www.amazon.com/s/ref=sr_pg_3?rh=i%3Aaps%2Ck%3AData+Science&page=3&keywords=Data+Science&ie=UTF8&qid=1548565321'
 
 
-def scrape_amzn(search_word, page=1, df=pd.DataFrame(columns = ['Name', 'Price', 'Link']), tries=3):
+def scrape_amzn(search_word, page=1, df=pd.DataFrame(columns = ['Name', 'Price','Recorded_On', 'Link']), tries=10):
 	'''
 	input: search_word, page, dataframe
 	output: dataframe [Name, Price, Link] of amzn search
 	'''
+	print() # blank line for sanity
 	# establish link
 	if not page-1:
 		site = "https://www.amazon.com/s/ref=nb_sb_noss_2?url=search--alias%3Daps&field-keywords=" + search_word.replace(" ", "+") + "&rh=i%3Aaps%2Ck%3A" + search_word.replace(" ", "+") 
 	else:
 		print("Going to page " + str(page) + "...")
-		site = 'https://www.amazon.com/s/ref=sr_pg_' + str(page) + '?rh=i%3Aaps%2Ck%3A' + search_word + '&page=' + str(page) + '&keywords=' + search_word + '&ie=UTF8' 
+		site = 'https://www.amazon.com/s/ref=sr_pg_' + str(page) + '?rh=i%3Aaps%2Ck%3A' + search_word.replace(" ","+") + '&page=' + str(page) + '&keywords=' + search_word.replace(" ","+") + '&ie=UTF8' 
 
 	# extract data from the site
 	html = requests.get(site).text
@@ -61,18 +63,21 @@ def scrape_amzn(search_word, page=1, df=pd.DataFrame(columns = ['Name', 'Price',
 		if line.find_all('span', {'class':'a-offscreen'}) and line.text.split()[0][:4] != "from":
 			df = df.append({ 'Name': line['href'].split('/')[3] # update the name by splitting the link
 					,'Price': line.text.split()[0] # update the price
-					,'Link':line['href']}, ignore_index=True) # update the link
+					,'Recorded_On' :str(dt.date.today())
+					,'Link':line['href']
+					}, ignore_index=True) # update the link
 	# print off data frame
 	if len(df_old.index) == len(df.index):
 		if tries: # retry on error (sometimes connection ends recursion)
 			print('Something went wrong! Retrying ' + str(tries) + ' more times...')
-			time.sleep(8)
+			time.sleep(20)
 			return(scrape_amzn(search_word,page,df, tries-1))
 		else:
 			return(df)
 	else:
 		print('Waiting to search for next web page...')
-		time.sleep(15)
+		for i in range(4): print('+++++++++++++++++++++++++++++++++++++++++++++')
+		time.sleep(45)
 		return(scrape_amzn(search_word, page+1, df))
 
 # establish search word
@@ -81,7 +86,7 @@ final = scrape_amzn(search_word)
 print(final)
 
 # output as csv
-final.to_csv('data/' + search_word.replace(" ", "_").lower()+'_amzn_scrape.csv') 
+final.to_csv('data/' + search_word.replace(" ", "_").lower()+'_amzn_scrape_' + str(dt.date.today()) + '.csv') 
 
 # prompt everything worked
 print("Successfully ran!")
