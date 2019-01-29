@@ -7,7 +7,7 @@ Sometimes the easiest way to gather data is scraping the web!
 
 ## Scraping Amazon
 
-Lucky for you I have built some semi-professional (a lot of improvements can be made I'm sure) scripts that scrape the data from searches on amazon. In order to scrape Amazon for all "Playstation3" search results then follow the shell commands below:
+Lucky for you I have built some semi-professional (a lot of improvements can be made) scripts that scrape the data from searches on amazon. In order to scrape Amazon for all "Playstation3" search results then follow the shell commands below:
 ```shell
 # setup environment (only need to be ran once)
 sudo git clone "https://github.com/teejl/webscrape_guide.git"
