@@ -26,7 +26,7 @@ site = "https://www.amazon.com/s/ref=nb_sb_noss_2?url=search--alias%3Daps&field-
 site = 'https://www.amazon.com/s/ref=sr_pg_3?rh=i%3Aaps%2Ck%3AData+Science&page=3&keywords=Data+Science&ie=UTF8&qid=1548565321'
 
 
-def scrape_amzn(search_word, page=1, df=pd.DataFrame(columns = ['Name', 'Price','Recorded_On', 'Link']), tries=10):
+def scrape_amzn(search_word, page=1, df=pd.DataFrame(columns = ['Name', 'Price','Recorded_On','Search_Word', 'Link']), tries=20):
 	'''
 	input: search_word, page, dataframe
 	output: dataframe [Name, Price, Link] of amzn search
@@ -64,6 +64,7 @@ def scrape_amzn(search_word, page=1, df=pd.DataFrame(columns = ['Name', 'Price',
 			df = df.append({ 'Name': line['href'].split('/')[3] # update the name by splitting the link
 					,'Price': line.text.split()[0] # update the price
 					,'Recorded_On' :str(dt.date.today())
+					,'Search_Word' :search_word
 					,'Link':line['href']
 					}, ignore_index=True) # update the link
 	# print off data frame
@@ -73,6 +74,7 @@ def scrape_amzn(search_word, page=1, df=pd.DataFrame(columns = ['Name', 'Price',
 			time.sleep(20)
 			return(scrape_amzn(search_word,page,df, tries-1))
 		else:
+			time.sleep(20)
 			return(df)
 	else:
 		print('Waiting to search for next web page...')
@@ -80,13 +82,58 @@ def scrape_amzn(search_word, page=1, df=pd.DataFrame(columns = ['Name', 'Price',
 		time.sleep(45)
 		return(scrape_amzn(search_word, page+1, df))
 
-# establish search word
-search_word = sys.argv[1]
-final = scrape_amzn(search_word)
-print(final)
 
-# output as csv
-final.to_csv('data/' + search_word.replace(" ", "_").lower()+'_amzn_scrape_' + str(dt.date.today()) + '.csv') 
 
-# prompt everything worked
-print("Successfully ran!")
+def main():
+	# establish search word
+	search_word = sys.argv[1]
+	final = scrape_amzn(search_word)
+	print(final)
+
+	# output as csv
+	final.to_csv('data/' + search_word.replace(" ", "_").lower()+'_amznscrape_' + str(dt.date.today()) + '.csv') 
+
+	# prompt everything worked
+	print("Successfully ran!")
+
+def test():
+	# read file
+	filepath = 'data/data_science_amzn_scrape_2019-01-29.csv'
+	df = pd.read_csv(filepath)
+
+	# loop through "Link" column
+	#for site in df['Link']:
+		#print (site)
+	# dummy initial condition to continue algo
+	site = df['Link'][0]
+	print(site)
+
+	# extract data from the site
+	html = requests.get(site).text
+	soup = BeautifulSoup(html, 'html5lib')
+
+	# search for results
+	print('Scraping ' + site + ' for data...')
+	scrape = soup.find_all('div', {'class': "content"})
+	print('The html code has been successfully downloaded...')
+	#print(scrape)
+	# filter down results
+	result = []
+
+	for div in scrape:
+		result.extend(div.find_all('li')) # , {'class': re.compile('.*.')})) # '.a*normal*.'
+	# print(result[:7])
+
+	# generate more data
+	data = []
+	for i in range(5):
+		# clean the data
+		data.append(str(result[i]).replace('<li><b>', '').replace('</li>', '').split("</b> "))
+	print(data)
+	#for div in result[:7]:
+	#	result2.extend(str(div))
+	#print(result2)
+	# print('Parsing the data from the webscrape for the amount and link of the item...')
+
+
+test()

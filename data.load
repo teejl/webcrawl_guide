@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# enable execution: "sudo chmod u+x {this file path}"
+# execute file: "./{this file path}"
+
+echo '~~~ ><> ><> ><> ><> <>< <>< <>< <>< ~~~'
+echo '~~~ Loading the data...'
+echo '~~~ ><> ><> ><> ><> <>< <>< <>< <>< ~~~'
+echo
+
+echo 'Scraping for Data Science data...'
+sudo python3 amznscrape.py "Data Science"
+echo 'Complete!!!'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+
+echo 'Scraping for Final Fantasy Playstation data...'
+sudo python3 amznscrape.py "Final Fantasy Playstation"
+echo 'Complete!!!'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+
+echo 'Scraping for Raspberry Pi data...'
+sudo python3 amznscrape.py "Raspberry Pi"
+echo 'Complete!!!'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+
+echo 'Scraping for GoPro data...'
+sudo python3 amznscrape.py "gopro"
+echo 'Complete!!!'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+
+echo 'Scraping for python data...'
+sudo python3 amznscrape.py "python"
+echo 'Complete!!!'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+
+echo '~~~ ><> ><> ><> ><> <>< <>< <>< <>< ~~~'
+echo '~~~ Loading data is complete!'
+echo '~~~ ><> ><> ><> ><> <>< <>< <>< <>< ~~~'
