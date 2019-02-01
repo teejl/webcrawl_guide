@@ -66,7 +66,7 @@ def scrape_amzn(search_word, page=1, df=pd.DataFrame(columns = ['Name', 'Price',
 					,'Recorded_On' :str(dt.date.today())
 					,'Search_Word' :search_word
 					,'Link':line['href']
-					}, ignore_index=True) # update the link
+					}, ignore_index=True)
 	# print off data frame
 	if len(df_old.index) == len(df.index):
 		if tries: # retry on error (sometimes connection ends recursion)
@@ -124,16 +124,19 @@ def test():
 		result.extend(div.find_all('li')) # , {'class': re.compile('.*.')})) # '.a*normal*.'
 	# print(result[:7])
 
+	# WATCH OUT FOR WHENEVER RESULTS RETURNS [] MIGHT NEED TO RETRY A COUPLE TIMES AS A SAFEGAURD!!!!
+
 	# generate more data
-	data = []
+	data = {'Link': site}
 	for i in range(5):
 		# clean the data
-		data.append(str(result[i]).replace('<li><b>', '').replace('</li>', '').split("</b> "))
+		item = str(result[i]).replace('<li><b>', '').replace('</li>', '').split("</b> ")
+		data[item[0][:-1]] = item[1]
 	print(data)
-	#for div in result[:7]:
-	#	result2.extend(str(div))
-	#print(result2)
 	# print('Parsing the data from the webscrape for the amount and link of the item...')
-
+	# add newly found data to data table
+	df = pd.DataFrame()
+	df = df.append(data, ignore_index=True)
+	print(df)
 
 test()
