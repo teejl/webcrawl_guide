@@ -26,3 +26,6 @@ sudo chmod u+x data.load
 sudo nano data.load # add the searches you want to find
 ./data.load
 ```
+
+# Potential Improvements
+The skip_scrape function within the amznscrape.py file can be improved. It targets to mainly work for books. I also beleive the algorithm can be made more efficient, by trying to establish a connection to all of the sites, instead of retrying 1 by 1. I did not try to implement the connection by connection to be friendly to Amazon.
