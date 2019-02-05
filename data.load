@@ -9,35 +9,14 @@ echo '~~~ ><> ><> ><> ><> <>< <>< <>< <>< ~~~'
 echo
 
 echo 'Scraping for Data Science data...'
-sudo python3 amznscrape.py "Data Science" 10
-echo 'Complete!!!'
-echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-
-echo 'Scraping for Final Fantasy Playstation data...'
-sudo python3 amznscrape.py "Final Fantasy Playstation" 10
-echo 'Complete!!!'
-echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-
-echo 'Scraping for Raspberry Pi data...'
-sudo python3 amznscrape.py "Raspberry Pi" 10
-echo 'Complete!!!'
-echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-
-echo 'Scraping for GoPro data...'
-sudo python3 amznscrape.py "gopro" 10
+sudo python3 amznscrape.py "Data Science" 30
 echo 'Complete!!!'
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 
 echo 'Scraping for python data...'
-sudo python3 amznscrape.py "python" 10
+sudo python3 amznscrape.py "python" 30
 echo 'Complete!!!'
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'

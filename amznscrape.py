@@ -47,15 +47,15 @@ def main():
 	final.to_csv('data/' + search_word.replace(" ", "_").lower()+'_amznscrape_' + str(dt.date.today()) + '.csv') 
 
 	print()
-	print('Results...')
-	print(final[['Name', 'Paperback', 'Price']][final.notnull()])
+	# print('Results...')
+	# print(final[['Name', 'Paperback', 'Price']][final.notnull()])
 
 	# prompt everything worked
 	print('~|~|~|'*10)
 	print("Successfully ran!")
 	print('~|~|~|'*10)
 
-def scrape_amzn(search_word, page=1, df=pd.DataFrame(columns = ['Name', 'Price','Recorded_On','Search_Word', 'Link']), tries=100):
+def scrape_amzn(search_word, page=1, df=pd.DataFrame(columns = ['Name', 'Price','Recorded_On','Search_Word', 'Link']), tries=int(sys.argv[2])):
 	'''
 	input: search_word, page, dataframe
 	output: dataframe [Name, Price, Link] of amzn search
